@@ -1,6 +1,8 @@
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import commands.create;
 import commands.ping;
+import commands.profile;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -28,12 +30,15 @@ public class Sparkle {
 
         // Settings of the bot
         client.useDefaultGame();
+        client.setActivity(Activity.playing("?help | 0.0.1"));
         client.setOwnerId(ownerId);
         client.setPrefix(list.get(2));
 
         // Adding commands
-        client.addCommand(
-                new ping()
+        client.addCommands(
+                new ping(),
+                new profile(),
+                new create()
         );
 
         new JDABuilder(AccountType.BOT)
