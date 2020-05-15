@@ -1,4 +1,4 @@
-package commands;
+package commands.user;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -19,7 +19,7 @@ public class create extends Command {
         } else {
             event.reply("Creating an account for you...");
             helper.db.createUser(event.getAuthor().getId());
-            event.reply("Account created!");
+            event.reply(":white_check_mark: Account created!");
         }
     }
 }

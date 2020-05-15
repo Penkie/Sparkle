@@ -1,8 +1,9 @@
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
-import commands.create;
+import commands.farm.chop;
+import commands.user.create;
 import commands.ping;
-import commands.profile;
+import commands.user.profile;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -23,6 +24,8 @@ public class Sparkle {
         // Config access
         String token = list.get(0);
         String ownerId = list.get(1);
+        String prefix = list.get(2);
+        String version = list.get(3);
 
         // Init
         EventWaiter waiter = new EventWaiter();
@@ -30,15 +33,16 @@ public class Sparkle {
 
         // Settings of the bot
         client.useDefaultGame();
-        client.setActivity(Activity.playing("?help | 0.0.1"));
+        client.setActivity(Activity.playing("?help | " + version));
         client.setOwnerId(ownerId);
-        client.setPrefix(list.get(2));
+        client.setPrefix(prefix);
 
         // Adding commands
         client.addCommands(
                 new ping(),
                 new profile(),
-                new create()
+                new create(),
+                new chop()
         );
 
         new JDABuilder(AccountType.BOT)
